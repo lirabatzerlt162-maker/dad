@@ -125,9 +125,31 @@
     <script>
         // 打开页面即弹窗
         window.addEventListener('load', function() {
+            // 播放搞怪音效
+            try {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                function playNote(freq, dur, start) {
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0.3, start);
+                    gain.gain.exponentialRampToValueAtTime(0.01, start + dur);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(start);
+                    osc.stop(start + dur);
+                }
+                // 搞怪上滑音效 - 像超级马里奥吃蘑菇
+                playNote(262, 0.1, ctx.currentTime);
+                playNote(330, 0.1, ctx.currentTime + 0.1);
+                playNote(392, 0.1, ctx.currentTime + 0.2);
+                playNote(523, 0.3, ctx.currentTime + 0.3);
+            } catch(e) {}
+
             setTimeout(function() {
                 alert('李源杰是陈嘉川张师千尉君阳刘锦朴韩伟博李宇轩的爸爸');
-            }, 500);
+            }, 800);
         });
 
         // 粒子特效 - 后台运行不影响弹窗
