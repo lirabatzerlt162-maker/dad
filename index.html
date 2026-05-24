@@ -3,312 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习资料站 - 学生必备</title>
+    <title>学习资料站 - 中考冲刺</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f7fa;
-            color: #333;
-        }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 20px 50px;
-            text-align: center;
-            color: #fff;
-        }
-        .header h1 { font-size: 36px; margin-bottom: 10px; }
-        .header p { font-size: 16px; opacity: 0.9; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 50px 20px 40px; text-align: center; color: #fff; }
+        .header h1 { font-size: 32px; margin-bottom: 8px; }
+        .header p { font-size: 15px; opacity: 0.9; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 25px 20px; }
 
-        .filter-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .filter-bar button {
-            padding: 8px 20px;
-            border: 2px solid #667eea;
-            background: transparent;
-            color: #667eea;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .filter-bar button.active, .filter-bar button:hover {
-            background: #667eea;
-            color: #fff;
-        }
+        .filter-bar { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .filter-bar button { padding: 7px 18px; border: 2px solid #667eea; background: transparent; color: #667eea; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+        .filter-bar button.active, .filter-bar button:hover { background: #667eea; color: #fff; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .card-img {
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-        .card-body { padding: 16px 18px 20px; }
-        .card-body h3 { font-size: 16px; margin-bottom: 6px; }
-        .card-body p { font-size: 13px; color: #888; line-height: 1.5; }
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 12px;
-        }
-        .price { font-size: 18px; font-weight: 700; color: #e74c3c; }
-        .price span { font-size: 13px; color: #999; font-weight: 400; }
-        .badge {
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 600;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+        .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .card-img { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+        .card-body { padding: 14px 16px 18px; }
+        .card-body h3 { font-size: 15px; margin-bottom: 5px; }
+        .card-body p { font-size: 12px; color: #888; line-height: 1.5; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .price { font-size: 16px; font-weight: 700; color: #e74c3c; }
+        .price span { font-size: 12px; color: #999; font-weight: 400; }
+        .badge { padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; }
         .badge-free { background: #e8f5e9; color: #2e7d32; }
         .badge-pay { background: #fff3e0; color: #e65100; }
 
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+        /* 查看资料弹窗 */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
-        .modal-box {
-            background: #fff;
-            border-radius: 20px;
-            max-width: 480px;
-            width: 100%;
-            padding: 30px;
-            text-align: center;
-            animation: pop 0.3s ease-out;
-        }
-        @keyframes pop {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .modal-box h2 { margin-bottom: 8px; font-size: 20px; }
-        .modal-box .desc { color: #666; font-size: 14px; margin-bottom: 20px; }
-        .qr-box {
-            width: 200px; height: 200px;
-            background: #f0f0f0;
-            margin: 0 auto 16px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-        }
-        .modal-box .tip { font-size: 13px; color: #999; margin-bottom: 20px; }
-        .modal-box .btn-close {
-            padding: 10px 30px;
-            background: #667eea;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            cursor: pointer;
-        }
+        .modal-box { background: #fff; border-radius: 20px; max-width: 520px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 28px; animation: pop 0.3s ease-out; }
+        @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .view-box { background: #f9f9f9; border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center; }
+        .view-box.hidden { filter: blur(8px); pointer-events: none; user-select: none; }
+        .view-box .file-icon { font-size: 48px; margin-bottom: 10px; }
+        .view-box h3 { font-size: 18px; margin-bottom: 6px; }
+        .view-box .preview-text { font-size: 13px; color: #666; line-height: 1.8; text-align: left; margin-top: 12px; }
+        .view-box .preview-text hr { border: none; border-top: 1px dashed #ddd; margin: 8px 0; }
 
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #999;
-            font-size: 13px;
-        }
+        .unlock-area { text-align: center; margin-bottom: 16px; }
+        .unlock-area input { padding: 10px 16px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; width: 140px; text-align: center; margin-right: 8px; }
+        .unlock-area button { padding: 10px 24px; background: #667eea; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; }
+        .unlock-area button:hover { background: #5a6fd6; }
+        .unlock-area .tip { font-size: 13px; color: #e74c3c; margin-top: 8px; display: none; }
 
-        /* 免费资料直接展示 */
-        .free-content {
-            background: #fff;
-            border-radius: 16px;
-            padding: 30px;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-        }
-        .free-content h2 { color: #667eea; margin-bottom: 16px; }
-        .free-content ul { padding-left: 20px; line-height: 2; color: #555; }
-        .free-content .download-btn {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 12px 30px;
-            background: #667eea;
-            color: #fff;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .free-content .download-btn:hover { background: #5a6fd6; }
+        .pay-prompt { background: #fff8e1; border: 1px solid #ffe082; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: center; }
+        .pay-prompt p { font-size: 13px; color: #795548; line-height: 1.6; }
+        .pay-prompt img { width: 140px; height: 140px; border-radius: 8px; margin: 10px auto; display: block; object-fit: cover; }
+
+        .modal .btn-close { padding: 10px 30px; background: #667eea; color: #fff; border: none; border-radius: 10px; font-size: 14px; cursor: pointer; margin-top: 10px; }
+
+        .footer { text-align: center; padding: 25px; color: #999; font-size: 12px; }
+        .locked-tag { display: inline-block; padding: 2px 8px; background: #fff3e0; color: #e65100; border-radius: 8px; font-size: 11px; margin-bottom: 6px; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>📚 学习资料站</h1>
-        <p>初中·高中·大学 · 学生必备资料</p>
+        <p>中考冲刺资料 · 每科仅0.2元 · 密码自动查看</p>
     </div>
     <div class="container">
         <div class="filter-bar">
             <button class="active" onclick="filter('all')">全部</button>
-            <button onclick="filter('free')">免费</button>
-            <button onclick="filter('pay')">付费</button>
-            <button onclick="filter('zhongkao')">中考</button>
-            <button onclick="filter('gaokao')">高考</button>
-            <button onclick="filter('other')">其他</button>
+            <button onclick="filter('pay')">在售</button>
         </div>
 
         <div class="grid" id="grid"></div>
 
-        <!-- 付费弹窗 -->
-        <div class="modal" id="modal">
-            <div class="modal-box">
-                <div class="tip" style="margin-bottom:12px; font-size:13px; color:#666;">\U0001f449 扫码支付后，截图付款记录<br>微信搜索 <b>中北大学资料站</b> 或扫码加好友，发截图获取资料</div>
-                <img src="qrcode.jpg" style="width:200px; height:200px; border-radius:12px; margin-bottom:12px; object-fit:cover;">
-                <h2 id="modalTitle" style="font-size:18px;">资料标题</h2>
-                <p class="desc" id="modalDesc">扫码支付 \U0001f4b0 截图发我领取资料</p>
-                <button class="btn-close" onclick="closeModal()">去支付</button>
+        <!-- 查看资料弹窗 -->
+        <div class="modal" id="viewModal">
+            <div class="modal-box" id="viewBox">
+                <div class="pay-prompt" id="payPrompt">
+                    <p>🔒 该资料需支付 <b id="payPrice">0.2元</b> 后查看</p>
+                    <img src="qrcode.jpg" alt="收款码">
+                    <p style="font-size:12px; color:#999;">扫码支付后输入密码 <b style="color:#e74c3c;">123456</b> 解锁</p>
+                </div>
+                <div class="unlock-area">
+                    <input type="password" id="pwdInput" placeholder="输入密码" maxlength="10">
+                    <button onclick="unlock()">🔓 解锁</button>
+                    <div class="tip" id="pwdError">密码错误，再试试</div>
+                </div>
+                <div class="view-box hidden" id="contentBox">
+                    <span class="locked-tag" id="contentTag">📄 资料内容</span>
+                    <h3 id="contentTitle">标题</h3>
+                    <div class="preview-text" id="contentPreview">
+                        <p>👆 资料内容将显示在这里</p>
+                        <p>如需下载保存，请长按/复制内容</p>
+                    </div>
+                </div>
+                <button class="btn-close" onclick="closeView()">关闭</button>
             </div>
         </div>
     </div>
-    <div class="footer">
-        🦀 小螃蟹学习资料站 · 持续更新中
-    </div>
+    <div class="footer">🦀 小螃蟹学习资料站 · 支付密码 123456</div>
 
     <script>
-        // 资料数据 - 免费的直接展示，付费的弹窗
+        const UNLOCK_PWD = '123456';
+
+        const previews = {
+            1: '📜 中国近代史时间轴（中考版）\n━━━━━━━━━━━━━━━━━━\n📌 第一部分  旧民主主义革命时期（1840-1919）\n\n一、鸦片战争（1840-1842）\n时间：1840年6月\n背景：英国以虎门销烟为借口\n结果：签订《南京条约》——第一个不平等条约\n影响：中国开始沦为半殖民地半封建社会\n\n二、太平天国运动（1851-1864）\n三、第二次鸦片战争（1856-1860）\n四、洋务运动（19C60-90s）\n五、甲午中日战争（1894-1895）\n六、戊戌变法（1898）\n七、八国联军侵华（1900-1901）\n八、辛亥革命（1911）\n九、新文化运动（1915）\n十、五四运动（1919）\n\n📌 第二部分  新民主主义革命时期（1919-1949）\n📌 第三部分  现代史速览（1949至今）\n📌 高频考点速记\n\n（完整版请在Word中查看，篇幅较长不便全部展示）',
+            2: '📝 中考英语高频考点手册\n━━━━━━━━━━━━━━━━━━\n一、动词高频词（50个）\nachieve afford allow appear believe\ncause celebrate change communicate compare\ncompete connect consider continue control\ncreate decide depend develop discover\nencourage enjoy expect experience express\ngraduate improve influence introduce invent\nmanage offer practice prefer prevent\nproduce provide realize refuse remain\nrequire succeed support suppose volunteer\n\n二、形容词高频词（20个）\n三、常见短语搭配（20组）\n四、写作万能句型\n\n（完整版请在Word中查看）',
+            3: '📐 中考数学冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、代数部分\n· 有理数、幂的运算、因式分解\n· 完全平方：(a±b)²=a²±2ab+b²\n· 平方差：a²-b²=(a+b)(a-b)\n· 求根公式：x=[-b±√(b²-4ac)]/2a\n· 判别式Δ=b²-4ac\n· 二次函数顶点式：y=a(x-h)²+k\n\n二、几何部分\n· 勾股定理：a²+b²=c²\n· 全等判定：SSS SAS ASA AAS HL\n· 圆：C=2πr S=πr²\n\n三、统计分析\n四、必背公式速查\n\n（完整版请在Word中查看）',
+            4: '📖 中考语文必背古诗词\n━━━━━━━━━━━━━━━━━━\n📌 七年级上\n《观沧海》曹操\n《闻王昌龄左迁龙标遥有此寄》李白\n《次北固山下》王湾\n《天净沙·秋思》马致远\n《论语》十二章\n\n📌 七年级下\n《木兰诗》《登幽州台歌》《望岳》\n《登飞来峰》《游山西村》《己亥杂诗》\n《陋室铭》《爱莲说》\n\n📌 八年级上\n《野望》《黄鹤楼》《使至塞上》\n《渡荆门送别》《钱塘湖春行》\n《饮酒》《春望》《赤壁》\n\n📌 八年级下\n《关雎》《蒹葭》《送杜少府》\n《茅屋为秋风所破歌》《卖炭翁》\n\n📌 九年级\n《行路难》《酬乐天》《水调歌头》\n《无题》《渔家傲》《江城子》《破阵子》\n\n（完整版请在Word中查看）',
+            5: '⚡ 中考物理冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、力学\nv=s/t  ρ=m/v  G=mg  p=F/S\n液体压强：p=ρgh\n浮力：F浮=ρ液gV排\n功：W=Fs  功率：P=W/t\n机械效率：η=W有/W总\n\n二、电学\n欧姆定律：I=U/R\n电功：W=UIt 电功率：P=UI\n焦耳定律：Q=I²Rt\n串联：I=I₁=I₂ U=U₁+U₂ R=R₁+R₂\n并联：I=I₁+I₂ U=U₁=U₂ 1/R=1/R₁+1/R₂\n\n三、热学\n四、声学和光学\n\n（完整版请在Word中查看）',
+            6: '🧪 中考化学冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、常见元素和化学式\nH He C N O F Ne Na Mg Al\nSi P S Cl K Ca Mn Fe Cu Zn Ag\n\n常见单质：H₂ O₂ N₂ Cl₂ Fe Cu\n常见氧化物：H₂O CO₂ CO SO₂ Fe₂O₃\n常见酸碱盐：HCl H₂SO₄ NaOH NaCl\n\n二、化学方程式\nC+O₂=CO₂  2H₂+O₂=2H₂O\n3Fe+2O₂=Fe₃O₄\n2KMnO₄=K₂MnO₄+MnO₂+O₂↑\nCaCO₃+2HCl=CaCl₂+H₂O+CO₂↑\n\n三、化学实验\n四、物质变化与性质\n\n（完整版请在Word中查看）',
+            7: '⚖️ 中考道德与法治手册\n━━━━━━━━━━━━━━━━━━\n一、核心知识点\n中国梦、两个一百年、四个自信\n四个全面、五位一体、新发展理念\n社会主义核心价值观\n宪法原则、权利与义务\n\n二、法律常识\n法律三特征、犯罪三特征\n刑罚分类（主刑+附加刑）\n未成年人四道防线\n\n三、国情常识\n根本政治制度、基本政治制度\n基本经济制度、分配制度\n中华民族精神核心：爱国主义\n\n（完整版请在Word中查看）',
+            8: '💠 中考全科打包（7科）\n━━━━━━━━━━━━━━━━━━\n包含以下全部资料：\n1. 中国近代史时间轴（中考版）\n2. 中考英语高频考点手册\n3. 中考数学冲刺手册\n4. 中考语文必背古诗词\n5. 中考物理冲刺手册\n6. 中考化学冲刺手册\n7. 中考道德与法治手册\n\n━━━━━━━━━━━━━━━━━━\n📌 7科完整Word文档，可直接下载打印\n📌 原价0.2元/科 × 7科 = 1.4元\n📌 打包特价仅需：1元 💰\n\n（各科详细预览请查看对应单科页面）',
+        };
+
         const items = [
-    {
-        id: 1,
-        title: '中国近代史时间轴（中考版）',
-        desc: '1840-1949完整时间线·背景·意义·高频考点',
-        emoji: '📜',
-        color: '#fff3e0',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 2,
-        title: '中考英语高频考点手册',
-        desc: '词汇·短语·写作句型，考前冲刺必备',
-        emoji: '📝',
-        color: '#e3f2fd',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 3,
-        title: '中考数学冲刺手册',
-        desc: '代数·几何·统计·公式，全科覆盖',
-        emoji: '📐',
-        color: '#fce4ec',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 4,
-        title: '中考语文必背古诗词',
-        desc: '7-9年级全部名句，默写必考全收录',
-        emoji: '📖',
-        color: '#f3e5f5',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 5,
-        title: '中考物理冲刺手册',
-        desc: '力学·电学·热学·声光一次搞定',
-        emoji: '⚡',
-        color: '#e8f5e9',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 6,
-        title: '中考化学冲刺手册',
-        desc: '元素·方程式·实验·考前速记',
-        emoji: '🧪',
-        color: '#fff8e1',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 7,
-        title: '中考道德与法治手册',
-        desc: '核心考点·法律·国情·考前速记',
-        emoji: '⚖️',
-        color: '#e0f2f1',
-        category: 'pay',
-        price: '0.2',
-        badge: 'pay',
-        badgeText: '¥0.2'
-    },
-    {
-        id: 8,
-        title: '中考全科打包（7科）',
-        desc: '历史+英语+数学+语文+物理+化学+道法，一次带走',
-        emoji: '💠',
-        color: '#fbe9e7',
-        category: 'pay',
-        price: '1',
-        badge: 'pay',
-        badgeText: '¥1'
-    },
-];
+            { id: 1, title: '中国近代史时间轴（中考版）', desc: '1840-1949完整时间线·背景·意义·考点', emoji: '📜', color: '#fff3e0', price: '0.2', badgeText: '¥0.2' },
+            { id: 2, title: '中考英语高频考点手册', desc: '词汇·短语·写作句型，考前冲刺必备', emoji: '📝', color: '#e3f2fd', price: '0.2', badgeText: '¥0.2' },
+            { id: 3, title: '中考数学冲刺手册', desc: '代数·几何·统计·公式，全科覆盖', emoji: '📐', color: '#fce4ec', price: '0.2', badgeText: '¥0.2' },
+            { id: 4, title: '中考语文必背古诗词', desc: '7-9年级全部名句，默写必考', emoji: '📖', color: '#f3e5f5', price: '0.2', badgeText: '¥0.2' },
+            { id: 5, title: '中考物理冲刺手册', desc: '力学·电学·热学·声光全覆盖', emoji: '⚡', color: '#e8f5e9', price: '0.2', badgeText: '¥0.2' },
+            { id: 6, title: '中考化学冲刺手册', desc: '元素·方程式·实验·考前速记', emoji: '🧪', color: '#fff8e1', price: '0.2', badgeText: '¥0.2' },
+            { id: 7, title: '中考道德与法治手册', desc: '核心考点·法律·国情全收录', emoji: '⚖️', color: '#e0f2f1', price: '0.2', badgeText: '¥0.2' },
+            { id: 8, title: '中考全科打包（7科）', desc: '历史+英语+数学+语文+物理+化学+道法', emoji: '💠', color: '#fbe9e7', price: '1', badgeText: '¥1' },
+        ];
+
+        let currentItem = null;
 
         function render(filterType) {
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
-            const filtered = filterType === 'all' ? items : items.filter(i => i.category === filterType || i.category === filterType);
-            filtered.forEach(item => {
+            (filterType === 'all' ? items : items.filter(i => i.category === filterType)).forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                if (item.category === 'free') {
-                    card.onclick = () => window.open(item.file, '_blank');
-                } else {
-                    card.onclick = () => openModal(item);
-                }
+                card.onclick = () => openView(item);
                 card.innerHTML = `
                     <div class="card-img" style="background:${item.color}">${item.emoji}</div>
                     <div class="card-body">
                         <h3>${item.title}</h3>
                         <p>${item.desc}</p>
                         <div class="card-footer">
-                            <div class="price">${item.price === '免费' ? '免费' : '¥' + item.price} <span>${item.price === '免费' ? '' : '/份'}</span></div>
-                            <span class="badge badge-${item.badge}">${item.badgeText}</span>
+                            <div class="price">¥${item.price} <span></span></div>
+                            <span class="badge badge-pay">${item.badgeText}</span>
                         </div>
                     </div>
                 `;
@@ -322,14 +154,32 @@
             render(type);
         }
 
-        function openModal(item) {
-            document.getElementById('modalTitle').textContent = item.title;
-            document.getElementById('modalDesc').textContent = '扫码支付 ¥' + item.price + ' 后截图发我获取资料';
-            document.getElementById('modal').classList.add('active');
+        function openView(item) {
+            currentItem = item;
+            document.getElementById('payPrice').textContent = '¥' + item.price;
+            document.getElementById('contentTitle').textContent = item.title;
+            document.getElementById('contentTag').textContent = '📄 ' + item.title;
+            document.getElementById('contentPreview').innerHTML = '<pre style="white-space:pre-wrap;font-family:inherit;font-size:13px;line-height:1.8;color:#555;">' + (previews[item.id] || '暂无预览') + '</pre>';
+            document.getElementById('contentBox').classList.add('hidden');
+            document.getElementById('payPrompt').style.display = 'block';
+            document.getElementById('pwdInput').value = '';
+            document.getElementById('pwdError').style.display = 'none';
+            document.getElementById('viewModal').classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
+        function unlock() {
+            const pwd = document.getElementById('pwdInput').value;
+            if (pwd === UNLOCK_PWD) {
+                document.getElementById('contentBox').classList.remove('hidden');
+                document.getElementById('payPrompt').style.display = 'none';
+                document.getElementById('pwdError').style.display = 'none';
+            } else {
+                document.getElementById('pwdError').style.display = 'block';
+            }
+        }
+
+        function closeView() {
+            document.getElementById('viewModal').classList.remove('active');
         }
 
         render('all');
