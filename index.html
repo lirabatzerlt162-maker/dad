@@ -88,9 +88,9 @@
                 <div class="view-box hidden" id="contentBox">
                     <span class="locked-tag" id="contentTag">📄 资料内容</span>
                     <h3 id="contentTitle">标题</h3>
-                    <div class="preview-text" id="contentPreview">
-                        <p>👆 资料内容将显示在这里</p>
-                        <p>如需下载保存，请长按/复制内容</p>
+                    <div style="margin-top:16px;">
+                        <a id="downloadLink" href="#" download style="display:inline-block; padding:12px 30px; background:#667eea; color:#fff; border-radius:10px; text-decoration:none; font-weight:600; font-size:15px;">📥 下载完整Word文档</a>
+                        <p style="margin-top:10px; font-size:12px; color:#888;">点击下载即可获取完整版资料</p>
                     </div>
                 </div>
                 <button class="btn-close" onclick="closeView()">关闭</button>
@@ -103,15 +103,28 @@
         const UNLOCK_PWD = '123456';
 
         const previews = {
-            1: '📜 中国近代史时间轴（中考版）\n━━━━━━━━━━━━━━━━━━\n📌 第一部分  旧民主主义革命时期（1840-1919）\n\n一、鸦片战争（1840-1842）\n时间：1840年6月\n背景：英国以虎门销烟为借口\n结果：签订《南京条约》——第一个不平等条约\n影响：中国开始沦为半殖民地半封建社会\n\n二、太平天国运动（1851-1864）\n三、第二次鸦片战争（1856-1860）\n四、洋务运动（19C60-90s）\n五、甲午中日战争（1894-1895）\n六、戊戌变法（1898）\n七、八国联军侵华（1900-1901）\n八、辛亥革命（1911）\n九、新文化运动（1915）\n十、五四运动（1919）\n\n📌 第二部分  新民主主义革命时期（1919-1949）\n📌 第三部分  现代史速览（1949至今）\n📌 高频考点速记\n\n（完整版请在Word中查看，篇幅较长不便全部展示）',
-            2: '📝 中考英语高频考点手册\n━━━━━━━━━━━━━━━━━━\n一、动词高频词（50个）\nachieve afford allow appear believe\ncause celebrate change communicate compare\ncompete connect consider continue control\ncreate decide depend develop discover\nencourage enjoy expect experience express\ngraduate improve influence introduce invent\nmanage offer practice prefer prevent\nproduce provide realize refuse remain\nrequire succeed support suppose volunteer\n\n二、形容词高频词（20个）\n三、常见短语搭配（20组）\n四、写作万能句型\n\n（完整版请在Word中查看）',
-            3: '📐 中考数学冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、代数部分\n· 有理数、幂的运算、因式分解\n· 完全平方：(a±b)²=a²±2ab+b²\n· 平方差：a²-b²=(a+b)(a-b)\n· 求根公式：x=[-b±√(b²-4ac)]/2a\n· 判别式Δ=b²-4ac\n· 二次函数顶点式：y=a(x-h)²+k\n\n二、几何部分\n· 勾股定理：a²+b²=c²\n· 全等判定：SSS SAS ASA AAS HL\n· 圆：C=2πr S=πr²\n\n三、统计分析\n四、必背公式速查\n\n（完整版请在Word中查看）',
-            4: '📖 中考语文必背古诗词\n━━━━━━━━━━━━━━━━━━\n📌 七年级上\n《观沧海》曹操\n《闻王昌龄左迁龙标遥有此寄》李白\n《次北固山下》王湾\n《天净沙·秋思》马致远\n《论语》十二章\n\n📌 七年级下\n《木兰诗》《登幽州台歌》《望岳》\n《登飞来峰》《游山西村》《己亥杂诗》\n《陋室铭》《爱莲说》\n\n📌 八年级上\n《野望》《黄鹤楼》《使至塞上》\n《渡荆门送别》《钱塘湖春行》\n《饮酒》《春望》《赤壁》\n\n📌 八年级下\n《关雎》《蒹葭》《送杜少府》\n《茅屋为秋风所破歌》《卖炭翁》\n\n📌 九年级\n《行路难》《酬乐天》《水调歌头》\n《无题》《渔家傲》《江城子》《破阵子》\n\n（完整版请在Word中查看）',
-            5: '⚡ 中考物理冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、力学\nv=s/t  ρ=m/v  G=mg  p=F/S\n液体压强：p=ρgh\n浮力：F浮=ρ液gV排\n功：W=Fs  功率：P=W/t\n机械效率：η=W有/W总\n\n二、电学\n欧姆定律：I=U/R\n电功：W=UIt 电功率：P=UI\n焦耳定律：Q=I²Rt\n串联：I=I₁=I₂ U=U₁+U₂ R=R₁+R₂\n并联：I=I₁+I₂ U=U₁=U₂ 1/R=1/R₁+1/R₂\n\n三、热学\n四、声学和光学\n\n（完整版请在Word中查看）',
-            6: '🧪 中考化学冲刺手册\n━━━━━━━━━━━━━━━━━━\n一、常见元素和化学式\nH He C N O F Ne Na Mg Al\nSi P S Cl K Ca Mn Fe Cu Zn Ag\n\n常见单质：H₂ O₂ N₂ Cl₂ Fe Cu\n常见氧化物：H₂O CO₂ CO SO₂ Fe₂O₃\n常见酸碱盐：HCl H₂SO₄ NaOH NaCl\n\n二、化学方程式\nC+O₂=CO₂  2H₂+O₂=2H₂O\n3Fe+2O₂=Fe₃O₄\n2KMnO₄=K₂MnO₄+MnO₂+O₂↑\nCaCO₃+2HCl=CaCl₂+H₂O+CO₂↑\n\n三、化学实验\n四、物质变化与性质\n\n（完整版请在Word中查看）',
-            7: '⚖️ 中考道德与法治手册\n━━━━━━━━━━━━━━━━━━\n一、核心知识点\n中国梦、两个一百年、四个自信\n四个全面、五位一体、新发展理念\n社会主义核心价值观\n宪法原则、权利与义务\n\n二、法律常识\n法律三特征、犯罪三特征\n刑罚分类（主刑+附加刑）\n未成年人四道防线\n\n三、国情常识\n根本政治制度、基本政治制度\n基本经济制度、分配制度\n中华民族精神核心：爱国主义\n\n（完整版请在Word中查看）',
-            8: '💠 中考全科打包（7科）\n━━━━━━━━━━━━━━━━━━\n包含以下全部资料：\n1. 中国近代史时间轴（中考版）\n2. 中考英语高频考点手册\n3. 中考数学冲刺手册\n4. 中考语文必背古诗词\n5. 中考物理冲刺手册\n6. 中考化学冲刺手册\n7. 中考道德与法治手册\n\n━━━━━━━━━━━━━━━━━━\n📌 7科完整Word文档，可直接下载打印\n📌 原价0.2元/科 × 7科 = 1.4元\n📌 打包特价仅需：1元 💰\n\n（各科详细预览请查看对应单科页面）',
+            1: '📜 中国近代史时间轴（中考版）',
+            2: '📝 中考英语高频考点手册',
+            3: '📐 中考数学冲刺手册',
+            4: '📖 中考语文必背古诗词',
+            5: '⚡ 中考物理冲刺手册',
+            6: '🧪 中考化学冲刺手册',
+            7: '⚖️ 中考道德与法治手册',
+            8: '💠 中考全科打包（7科）',
         };
+
+        const files = {
+            1: '中国近代史时间轴_中考版.docx',
+            2: '中考英语高频考点手册.docx',
+            3: '中考数学冲刺手册.docx',
+            4: '中考语文必背古诗词.docx',
+            5: '中考物理冲刺手册.docx',
+            6: '中考化学冲刺手册.docx',
+            7: '中考道德与法治冲刺手册.docx',
+            8: '中考全科打包（7科）.docx',
+        };
+
+        const unlocked = {};
 
         const items = [
             { id: 1, title: '中国近代史时间轴（中考版）', desc: '1840-1949完整时间线·背景·意义·考点', emoji: '📜', color: '#fff3e0', price: '0.2', badgeText: '¥0.2' },
@@ -159,7 +172,16 @@
             document.getElementById('payPrice').textContent = '¥' + item.price;
             document.getElementById('contentTitle').textContent = item.title;
             document.getElementById('contentTag').textContent = '📄 ' + item.title;
-            document.getElementById('contentPreview').innerHTML = '<pre style="white-space:pre-wrap;font-family:inherit;font-size:13px;line-height:1.8;color:#555;">' + (previews[item.id] || '暂无预览') + '</pre>';
+            
+            // 设置下载链接
+            var dlLink = document.getElementById('downloadLink');
+            if (files[item.id]) {
+                dlLink.href = files[item.id];
+                dlLink.textContent = '📥 下载完整Word文档';
+            } else {
+                dlLink.textContent = '📥 暂无下载';
+            }
+            
             document.getElementById('contentBox').classList.add('hidden');
             document.getElementById('payPrompt').style.display = 'block';
             document.getElementById('pwdInput').value = '';
