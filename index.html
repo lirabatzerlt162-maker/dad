@@ -181,14 +181,14 @@
 
         <div class="grid" id="grid"></div>
 
-        <!-- 免费资料弹窗 -->
+        <!-- 付费弹窗 -->
         <div class="modal" id="modal">
             <div class="modal-box">
-                <div class="qr-box">💰</div>
-                <h2 id="modalTitle">资料标题</h2>
-                <p class="desc" id="modalDesc">扫码支付 9.9 元后获取提取码</p>
-                <p class="tip">💡 截图扫码 → 微信/支付宝支付 → 截图发我获取资料</p>
-                <button class="btn-close" onclick="closeModal()">我知道了</button>
+                <div class="tip" style="margin-bottom:12px; font-size:13px; color:#666;">扫码支付后截图发我，我把资料发给你</div>
+                <img src="qrcode.jpg" style="width:200px; height:200px; border-radius:12px; margin-bottom:12px; object-fit:cover;">
+                <h2 id="modalTitle" style="font-size:18px;">资料标题</h2>
+                <p class="desc" id="modalDesc">扫码支付后获取资料</p>
+                <button class="btn-close" onclick="closeModal()">完成支付，联系我</button>
             </div>
         </div>
     </div>
