@@ -199,96 +199,96 @@
     <script>
         // 资料数据 - 免费的直接展示，付费的弹窗
         const items = [
-            {
-                id: 1,
-                title: '中国近代史时间轴（中考版）',
-                desc: '1840-1949完整时间线·背景·意义·高频考点',
-                emoji: '📜',
-                color: '#fff3e0',
-                category: 'free',
-                price: '免费',
-                badge: 'free',
-                badgeText: '免费',
-                file: '中国近代史时间轴_中考版.docx'
-            },
-            {
-                id: 2,
-                title: '中考英语高频词汇500',
-                desc: '最常考的500个单词·例句·记忆口诀',
-                emoji: '📝',
-                color: '#e3f2fd',
-                category: 'pay',
-                price: '9.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-            {
-                id: 3,
-                title: '初中数学公式大全',
-                desc: '代数·几何·概率 全覆盖，考前速记',
-                emoji: '📐',
-                color: '#fce4ec',
-                category: 'pay',
-                price: '6.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-            {
-                id: 4,
-                title: '高中文言文实词150',
-                desc: '课内+课外必考实词·例句·翻译',
-                emoji: '📖',
-                color: '#f3e5f5',
-                category: 'pay',
-                price: '9.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-            {
-                id: 5,
-                title: 'PPT模板精选20套',
-                desc: '答辩·汇报·小组展示·颜值在线',
-                emoji: '🎨',
-                color: '#e8f5e9',
-                category: 'pay',
-                price: '5.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-            {
-                id: 6,
-                title: 'Excel常用公式速查表',
-                desc: 'VLOOKUP·IF·SUMIF·数据透视表',
-                emoji: '📊',
-                color: '#fff8e1',
-                category: 'pay',
-                price: '4.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-            {
-                id: 7,
-                title: '作文素材·金句100条',
-                desc: '人物·名言·时事·万能开头结尾',
-                emoji: '✍️',
-                color: '#e0f2f1',
-                category: 'free',
-                price: '免费',
-                badge: 'free',
-                badgeText: '免费'
-            },
-            {
-                id: 8,
-                title: '考研英语作文模板',
-                desc: '大作文+小作文·万能套用',
-                emoji: '🎯',
-                color: '#fbe9e7',
-                category: 'pay',
-                price: '12.9',
-                badge: 'pay',
-                badgeText: '付费'
-            },
-        ];
+    {
+        id: 1,
+        title: '中国近代史时间轴（中考版）',
+        desc: '1840-1949完整时间线·背景·意义·高频考点',
+        emoji: '📜',
+        color: '#fff3e0',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费',
+        file: '中国近代史时间轴_中考版.docx'
+    },
+    {
+        id: 2,
+        title: '中考英语高频考点手册',
+        desc: '词汇·短语·写作句型，考前冲刺必备',
+        emoji: '📝',
+        color: '#e3f2fd',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 3,
+        title: '中考数学冲刺手册',
+        desc: '代数·几何·统计·公式，全科覆盖',
+        emoji: '📐',
+        color: '#fce4ec',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 4,
+        title: '中考语文必背古诗词',
+        desc: '7-9年级全部名句，默写必考全收录',
+        emoji: '📖',
+        color: '#f3e5f5',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 5,
+        title: '中考物理冲刺手册',
+        desc: '力学·电学·热学·声光一次搞定',
+        emoji: '⚡',
+        color: '#e8f5e9',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 6,
+        title: '中考化学冲刺手册',
+        desc: '元素·方程式·实验·考前速记',
+        emoji: '🧪',
+        color: '#fff8e1',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 7,
+        title: '中考道德与法治手册',
+        desc: '核心考点·法律·国情·考前速记',
+        emoji: '⚖️',
+        color: '#e0f2f1',
+        category: 'free',
+        price: '免费',
+        badge: 'free',
+        badgeText: '免费'
+    },
+    {
+        id: 8,
+        title: '中考全科打包（6科）',
+        desc: '英语数学语文物理化学生物道法，一次带走',
+        emoji: '💠',
+        color: '#fbe9e7',
+        category: 'pay',
+        price: '1',
+        badge: 'pay',
+        badgeText: '¥1'
+    },
+];
 
         function render(filterType) {
             const grid = document.getElementById('grid');
