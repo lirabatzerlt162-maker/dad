@@ -88,9 +88,16 @@
                 <div class="view-box hidden" id="contentBox">
                     <span class="locked-tag" id="contentTag">📄 资料内容</span>
                     <h3 id="contentTitle">标题</h3>
-                    <div style="margin-top:16px;">
-                        <a id="downloadLink" href="#" download style="display:inline-block; padding:12px 30px; background:#667eea; color:#fff; border-radius:10px; text-decoration:none; font-weight:600; font-size:15px;">📥 下载完整Word文档</a>
-                        <p style="margin-top:10px; font-size:12px; color:#888;">点击下载即可获取完整版资料</p>
+                    <div style="margin-top:16px; text-align:center;">
+                        <div style="background:#f0f7ff; border-radius:12px; padding:16px; margin-bottom:12px;">
+                            <p style="font-size:12px; color:#888; margin-bottom:6px;">📎 百度网盘链接</p>
+                            <p id="baiduLinkText" style="font-size:13px; color:#333; word-break:break-all; background:#fff; border-radius:8px; padding:8px; border:1px dashed #ccc;"></p>
+                        </div>
+                        <div style="background:#fff8e1; border-radius:12px; padding:12px;">
+                            <p style="font-size:12px; color:#888; margin-bottom:4px;">🔑 提取码</p>
+                            <p id="codeText" style="font-size:24px; font-weight:700; color:#e74c3c; letter-spacing:4px;"></p>
+                        </div>
+                        <p style="margin-top:10px; font-size:12px; color:#999;">💡 复制提取码 → 打开网盘链接 → 输入提取码下载</p>
                     </div>
                 </div>
                 <button class="btn-close" onclick="closeView()">关闭</button>
@@ -113,18 +120,27 @@
             8: '💠 中考全科打包（7科）',
         };
 
-        const files = {
-            1: '中国近代史时间轴_中考版.docx',
-            2: '中考英语高频考点手册.docx',
-            3: '中考数学冲刺手册.docx',
-            4: '中考语文必背古诗词.docx',
-            5: '中考物理冲刺手册.docx',
-            6: '中考化学冲刺手册.docx',
-            7: '中考道德与法治冲刺手册.docx',
-            8: '中考全科打包（7科）.docx',
+        const codes = {
+            1: 'abcd1234',
+            2: 'abcd1234',
+            3: 'abcd1234',
+            4: 'abcd1234',
+            5: 'abcd1234',
+            6: 'abcd1234',
+            7: 'abcd1234',
+            8: 'efgh5678',
         };
 
-        const unlocked = {};
+        const baiduLinks = {
+            1: 'https://pan.baidu.com/s/xxxxx',
+            2: 'https://pan.baidu.com/s/xxxxx',
+            3: 'https://pan.baidu.com/s/xxxxx',
+            4: 'https://pan.baidu.com/s/xxxxx',
+            5: 'https://pan.baidu.com/s/xxxxx',
+            6: 'https://pan.baidu.com/s/xxxxx',
+            7: 'https://pan.baidu.com/s/xxxxx',
+            8: 'https://pan.baidu.com/s/xxxxx',
+        };
 
         const items = [
             { id: 1, title: '中国近代史时间轴（中考版）', desc: '1840-1949完整时间线·背景·意义·考点', emoji: '📜', color: '#fff3e0', price: '0.2', badgeText: '¥0.2' },
@@ -173,14 +189,10 @@
             document.getElementById('contentTitle').textContent = item.title;
             document.getElementById('contentTag').textContent = '📄 ' + item.title;
             
-            // 设置下载链接
-            var dlLink = document.getElementById('downloadLink');
-            if (files[item.id]) {
-                dlLink.href = files[item.id];
-                dlLink.textContent = '📥 下载完整Word文档';
-            } else {
-                dlLink.textContent = '📥 暂无下载';
-            }
+            var link = document.getElementById('baiduLinkText');
+            var code = document.getElementById('codeText');
+            link.textContent = baiduLinks[item.id] || '链接待更新';
+            code.textContent = codes[item.id] || '待定';
             
             document.getElementById('contentBox').classList.add('hidden');
             document.getElementById('payPrompt').style.display = 'block';
